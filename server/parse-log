@@ -57,13 +57,13 @@ while True:
 	for ln in sys.stdin:
 		if ln.strip() == '':
 			break
-		r = re.match('recv: underrun  .. 04 .. .. (.*?)\s*\*', ln)
+		r = re.match(r'recv: underrun  .. 04 .. .. (.*?)\s*\*', ln)
 		if r is not None:
 			check.append([None, parsepos([int(x, 16) for x in r.group(1).split()])])
 			continue
 		if re.match('send ...: start-move', ln):
 			break
-		r = re.match('send ...: move  .. (..) (.*?)\s*/', ln)
+		r = re.match(r'send ...: move  .. (..) (.*?)\s*/', ln)
 		if r is None:
 			continue
 		target = int(r.group(1), 16)

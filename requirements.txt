@@ -1,3 +1,8 @@
 fhs-paths==1.1
 network-wrapper==0.3
-websocket-httpd==0.4
+# Every websocket-httpd release from 0.3 to 0.5 (PyPI and Debian) unmasks
+# websocket frames with signed bytes, which NumPy 2 rejects: the server dies on
+# the first message from a browser. The fix (0c3b229) is not released yet.
+websocket-httpd @ git+https://github.com/wijnen/python-websocketd@439fb13e2536740981d8a50885ca8963bc01de24
+numpy
+pyserial
